@@ -1,4 +1,4 @@
-from cli.colors import *
+from views.colors import *
 
 def helper(program_name: str):
 

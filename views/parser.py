@@ -1,4 +1,4 @@
-from cli.helper import helper, error
+from views.helper import helper, error
 from sys import argv
 
 def parse():
