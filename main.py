@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-from views.parser import parse
+from cli.parser import parse
 from socket import socket
 
 def main():
-    parse()
+    ip, port = parse()
 
 
 if __name__ == "__main__":

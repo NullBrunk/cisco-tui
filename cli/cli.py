@@ -1,6 +1,6 @@
 from views.colors import *
 
-def helper(program_name: str):
+def help_menu(program_name: str):
 
     print(f"""{WHITE}TUI tool to simplify Cisco IOS configuration
 

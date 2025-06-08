@@ -1,14 +1,14 @@
-from views.helper import helper, error
+from cli.cli import help_menu, error
 from sys import argv
 
 def parse():
     if(len(argv) <= 2):
-        helper(argv[0])
+        help_menu(argv[0])
         quit()
 
     for arg in argv:
         if arg in ["--help", "-h"]:
-            helper(argv[0])
+            help_menu(argv[0])
             quit()
 
     ip = argv[1]
