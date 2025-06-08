@@ -11,8 +11,8 @@ def parse():
             helper(argv[0])
             quit()
 
-    ip = argv[0]
-    port = argv[0]
+    ip = argv[1]
+    port = argv[2]
 
     try:
         port = int(port)
