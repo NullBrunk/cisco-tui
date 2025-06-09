@@ -1,18 +1,25 @@
-from cli.cli import help_menu, error
+from cli.cli import help_menu, error, missing_mandatory
 from sys import argv
 
 def parse():
-    if(len(argv) <= 2):
-        help_menu(argv[0])
-        quit()
-
     for arg in argv:
         if arg in ["--help", "-h"]:
             help_menu(argv[0])
             quit()
 
+    if(len(argv) == 1):
+        help_menu(argv[0])
+        quit()
+
+    if(len(argv) <= 3):
+        missing_mandatory(argv)
+        quit()
+
+   
     ip = argv[1]
     port = argv[2]
+    command = argv[3]
+    
 
     try:
         port = int(port)
@@ -24,4 +31,7 @@ def parse():
         error(argv[0], "PORT must be an integer between 1 and 65535")
         quit()
 
-    return ip, port
+    if(len(argv) > 4):
+        return ip, port, command, argv[4]
+
+    return ip, port, command, None
