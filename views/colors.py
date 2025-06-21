@@ -14,4 +14,4 @@ CYAN="\x1b[36m"
 BLUE="\x1b[34m"
 RED="\x1b[31m"
 
-NULL="\x1b[0m"
+NOCOLOR="\x1b[0m"

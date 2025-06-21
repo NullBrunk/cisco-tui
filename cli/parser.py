@@ -7,12 +7,8 @@ def parse():
             help_menu(argv[0])
             quit()
 
-    if(len(argv) == 1):
-        help_menu(argv[0])
-        quit()
-
     if(len(argv) <= 3):
-        missing_mandatory(argv)
+        help_menu(argv[0])
         quit()
 
    
