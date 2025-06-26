@@ -1,4 +1,4 @@
-from controllers.interface import Interface
+from models.interface import Interface
 from views.colors import *
 import questionary
 
@@ -14,6 +14,8 @@ class Up:
                 *self.INTERFACES,
         ], qmark="?", instruction=" ").ask()
 
+        if(not inames or inames == []): quit()
+
         return inames
 
     def run(self):
@@ -22,7 +24,7 @@ class Up:
         for iname in inames:
             interface = Interface(iname, self.interact)
 
-            print(f"\n{BOLD_BLUE}>{BOLD_WHITE} Upping {BOLD_BLUE}{iname}{NOCOLOR}")
+            print(f"\n{BOLD_WHITE}❯{BOLD_GREEN} Upping {BOLD_WHITE}{iname}{NOCOLOR}")
             output = interface.up()
             
             show = False

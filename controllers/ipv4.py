@@ -1,4 +1,4 @@
-from controllers.interface import Interface
+from models.interface import Interface
 from views.colors import *
 import questionary
 import ipaddress
@@ -23,11 +23,17 @@ class Ipv4:
         if(iname == "Enter manually"):
             iname = questionary.text("Enter custom interface (e.g. Lo0):").ask()
 
+        if(not iname): quit()
+        
         return iname
 
 
     def ip_config(self):
         cidr = questionary.text("Enter IP address:").ask()
+
+        if(not cidr): quit()
+
+
         net = ipaddress.IPv4Network(cidr, strict=False)
         ip = cidr.split("/")[0]
 

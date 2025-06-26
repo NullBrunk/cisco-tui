@@ -2,7 +2,7 @@ from cli.cli import help_menu, error, missing_mandatory
 from sys import argv
 
 def parse():
-    for arg in argv:
+    for arg in argv[:4]:
         if arg in ["--help", "-h"]:
             help_menu(argv[0])
             quit()
@@ -28,6 +28,6 @@ def parse():
         quit()
 
     if(len(argv) > 4):
-        return ip, port, command, argv[4]
+        return argv[0], ip, port, command, argv[4]
 
-    return ip, port, command, None
+    return argv[0], ip, port, command, None

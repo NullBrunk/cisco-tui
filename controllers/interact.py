@@ -14,3 +14,10 @@ class Interact:
             return self.session.send_config_set(command)
 
         return self.session.send_command(command)
+
+
+    def get_prompt(self) -> str:
+        send_command = self.send("no", True)
+        send_command = send_command.split("\n")[-1].replace("#", "").replace(">", "")
+
+        return send_command

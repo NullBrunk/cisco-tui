@@ -10,9 +10,11 @@ def help_menu(program_name: str):
   {BOLD_CYAN}PORT            {NOCOLOR}{WHITE}The Cisco IOS Telnet port
 
 {BOLD_GREEN}Commands:
-  {BOLD_CYAN}ipv4      {NOCOLOR}{WHITE}Configure ipv4
-  {BOLD_CYAN}up        {NOCOLOR}{WHITE}Up a group of interface
-  {BOLD_CYAN}down        {NOCOLOR}{WHITE}Down a group of interface
+  {BOLD_CYAN}show            {NOCOLOR}{WHITE}Get informations (sh commands)
+  {BOLD_CYAN}ipv4            {NOCOLOR}{WHITE}Configure ipv4
+  {BOLD_CYAN}up              {NOCOLOR}{WHITE}Up a group of interface
+  {BOLD_CYAN}down            {NOCOLOR}{WHITE}Down a group of interface
+  {BOLD_CYAN}hostname        {NOCOLOR}{WHITE}Set the router hostname
   
 """)
 
@@ -32,6 +34,18 @@ def down_help_menu(program_name: str):
     print(f"""{WHITE}Up interfaces
 
 {BOLD_GREEN}Usage: {BOLD_CYAN}{program_name} <IP> <PORT> up
+""")
+
+def hostname_help_menu(program_name: str):
+    print(f"""{WHITE}Set/Get the hostname
+
+{BOLD_GREEN}Usage: {BOLD_CYAN}{program_name} <IP> <PORT> hostname
+""")
+
+def show_help_menu(program_name: str):
+    print(f"""{WHITE}Get informations (sh commands)
+
+{BOLD_GREEN}Usage: {BOLD_CYAN}{program_name} <IP> <PORT> info
 """)
 
 def missing_mandatory(argv: list):
@@ -55,7 +69,7 @@ def missing_mandatory(argv: list):
 def error(program_name: str, msg: str):
     print(f"""{BOLD_RED}error: {NOCOLOR}{WHITE}{msg}
 
-{BOLD_GREEN}Usage: {BOLD_CYAN}{program_name} <IP> <PORT>
+{BOLD_GREEN}Usage: {BOLD_CYAN}{program_name} <IP> <PORT> <COMMAND>
 
 {WHITE}For more information, try '{BOLD_CYAN}--help{NOCOLOR}{WHITE}'.
 """)

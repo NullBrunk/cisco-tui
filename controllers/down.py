@@ -1,4 +1,4 @@
-from controllers.interface import Interface
+from models.interface import Interface
 from views.colors import *
 import questionary
 
@@ -22,7 +22,7 @@ class Down:
         for iname in inames:
             interface = Interface(iname, self.interact)
 
-            print(f"\n{BOLD_BLUE}>{BOLD_WHITE} Shutting down {BOLD_BLUE}{iname}{NOCOLOR}")
+            print(f"\n{BOLD_WHITE}❯{BOLD_RED} Shutting down {BOLD_WHITE}{iname}{NOCOLOR}")
             output = interface.down()
             
             show = False
