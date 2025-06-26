@@ -6,7 +6,8 @@ from controllers.ipv4 import Ipv4
 from controllers.down import Down
 from controllers.show import Show
 from controllers.up import Up
-from models.interfaces import Interfaces
+
+from services.getInterfaces import getInterfaces
 
 from cli.parser import parse
 from cli.cli import *
@@ -26,8 +27,7 @@ def main():
     net_connect.enable()
     interact = Interact(net_connect)
 
-    interfacesController = Interfaces(interact)
-    INTERFACES = interfacesController.INTERFACES
+    INTERFACES = getInterfaces(interact)
 
     if "ipv4".startswith(command.lower()):
         ipv4 = Ipv4(interact, INTERFACES)
@@ -66,7 +66,7 @@ def main():
             hostname_help_menu(program_name)
 
     elif "show".startswith(command.lower()):
-        show = Show(interact, INTERFACES)
+        show = Show(interact)
 
         if(non_mandatory == None or non_mandatory == "tui"):
             show.run()

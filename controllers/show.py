@@ -3,9 +3,8 @@ from re import search
 import questionary
 
 class Show:
-    def __init__(self, interact, INTERFACES):
+    def __init__(self, interact):
         self.interact = interact
-        self.INTERFACES = INTERFACES
 
     def show_ipv4(self):
         print()
