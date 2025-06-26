@@ -11,33 +11,33 @@ def help_menu(program_name: str):
 
 {BOLD_GREEN}Commands:
   {BOLD_CYAN}show            {NOCOLOR}{WHITE}Get informations (sh commands)
-  {BOLD_CYAN}ipv4            {NOCOLOR}{WHITE}Configure ipv4
+  {BOLD_CYAN}ipv4            {NOCOLOR}{WHITE}Configure IPv4 on an interface
   {BOLD_CYAN}up              {NOCOLOR}{WHITE}Up a group of interface
   {BOLD_CYAN}down            {NOCOLOR}{WHITE}Down a group of interface
-  {BOLD_CYAN}hostname        {NOCOLOR}{WHITE}Set the router hostname
+  {BOLD_CYAN}hostname        {NOCOLOR}{WHITE}Get/set the router hostname
   
 """)
 
 def interfaces_help_menu(program_name: str):
-    print(f"""{WHITE}Configure IP on an interface
+    print(f"""{WHITE}Configure IPv4 on an interface
 
 {BOLD_GREEN}Usage: {BOLD_CYAN}{program_name} <IP> <PORT> interfaces
 """)
 
 def down_help_menu(program_name: str):
-    print(f"""{WHITE}Shutdown interfaces
+    print(f"""{WHITE}Shutdown a group of interfaces
 
 {BOLD_GREEN}Usage: {BOLD_CYAN}{program_name} <IP> <PORT> down
 """)
 
-def down_help_menu(program_name: str):
-    print(f"""{WHITE}Up interfaces
+def up_help_menu(program_name: str):
+    print(f"""{WHITE}Up a group of interfaces
 
 {BOLD_GREEN}Usage: {BOLD_CYAN}{program_name} <IP> <PORT> up
 """)
 
 def hostname_help_menu(program_name: str):
-    print(f"""{WHITE}Set/Get the hostname
+    print(f"""{WHITE}Get/set the hostname
 
 {BOLD_GREEN}Usage: {BOLD_CYAN}{program_name} <IP> <PORT> hostname
 """)

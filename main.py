@@ -39,13 +39,13 @@ def main():
             interfaces_help_menu(program_name)
 
     elif "down".startswith(command.lower()):
-            down = Down(interact, INTERFACES)
-            
-            if(non_mandatory == None or non_mandatory == "tui"):
-                down.run()
+        down = Down(interact, INTERFACES)
+        
+        if(non_mandatory == None or non_mandatory == "tui"):
+            down.run()
 
-            if(non_mandatory == "--help" or non_mandatory == "-h"):
-                down_help_menu(program_name)
+        if(non_mandatory == "--help" or non_mandatory == "-h"):
+            down_help_menu(program_name)
 
     elif "up".startswith(command.lower()):
         up = Up(interact, INTERFACES)
