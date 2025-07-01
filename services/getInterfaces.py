@@ -1,4 +1,4 @@
-from controllers.interact import Interact
+from services.interact import Interact
 import ipaddress
 
 def getInterfaces(interact):

@@ -1,9 +1,10 @@
+from controllers.baseController import baseController
 from models.interface import Interface
 from views.colors import *
 import questionary
 import ipaddress
 
-class Ipv4:
+class Ipv4(baseController):
     def __init__(self, interact, INTERFACES):
         self.interact = interact
         self.INTERFACES = INTERFACES
@@ -42,6 +43,8 @@ class Ipv4:
 
     ### Configure an IP on a specific interface
     def run(self):
+        super().run()
+
         iname = self.gather_interface()
         self.interface = Interface(iname, self.interact)
 

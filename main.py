@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
-from controllers.interact import Interact
-from controllers.hostname import Hostname
-from controllers.ipv4 import Ipv4
-from controllers.down import Down
-from controllers.show import Show
-from controllers.up import Up
+from controllers.general.hostname import Hostname
+from controllers.general.save import Save
+from controllers.general.show import Show
+
+from controllers.interfaces.ipv4 import Ipv4
+from controllers.interfaces.down import Down
+from controllers.interfaces.up import Up
 
 from services.getInterfaces import getInterfaces
+from services.interact import Interact
 
 from cli.parser import parse
 from cli.cli import *
@@ -26,57 +28,40 @@ def main():
     )
     net_connect.enable()
     interact = Interact(net_connect)
-
-    INTERFACES = getInterfaces(interact)
+    controller = None
 
     if "ipv4".startswith(command.lower()):
-        ipv4 = Ipv4(interact, INTERFACES)
-        
-        if(non_mandatory == None or non_mandatory == "tui"):
-            ipv4.run()
-
-        if(non_mandatory == "--help" or non_mandatory == "-h"):
-            interfaces_help_menu(program_name)
+        controller = Ipv4(interact, getInterfaces(interact))
 
     elif "down".startswith(command.lower()):
-        down = Down(interact, INTERFACES)
-        
-        if(non_mandatory == None or non_mandatory == "tui"):
-            down.run()
-
-        if(non_mandatory == "--help" or non_mandatory == "-h"):
-            down_help_menu(program_name)
+        controller = Down(interact, getInterfaces(interact))
 
     elif "up".startswith(command.lower()):
-        up = Up(interact, INTERFACES)
-        
-        if(non_mandatory == None or non_mandatory == "tui"):
-            up.run()
-
-        if(non_mandatory == "--help" or non_mandatory == "-h"):
-            up_help_menu(program_name)
+        controller = Up(interact, getInterfaces(interact))
 
     elif "hostname".startswith(command.lower()):
-        hostname = Hostname(interact)
-
-        if(non_mandatory == None or non_mandatory == "tui"):
-            hostname.run()
-        
-        if(non_mandatory == "--help" or non_mandatory == "-h"):
-            hostname_help_menu(program_name)
+        controller = Hostname(interact)
 
     elif "show".startswith(command.lower()):
-        show = Show(interact)
+        controller = Show(interact)
 
-        if(non_mandatory == None or non_mandatory == "tui"):
-            show.run()
+    elif "save".startswith(command.lower()):
+        controller = Save(interact)
 
-        if(non_mandatory == "--help" or non_mandatory == "-h"):
-            show_help_menu(program_name)
+    elif "static".startswith(command.lower()):
+        controller = Static(interact)
+
+    elif "ospf".startswith(command.lower()):
+        controller = Ospf(interact)
+
+    elif "bgp".startswith(command.lower()):
+        controller = Bgp(interact)
 
     else:
         error(program_name, f"Unrecognized command {command}")
-        
+        quit()
+
+    controller.run()
 
 if __name__ == "__main__":
     main()

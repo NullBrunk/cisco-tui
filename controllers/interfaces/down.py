@@ -1,8 +1,9 @@
+from controllers.baseController import baseController
 from models.interface import Interface
 from views.colors import *
 import questionary
 
-class Down:
+class Down(baseController):
     def __init__(self, interact, INTERFACES):
         self.interact = interact
         self.INTERFACES = INTERFACES
@@ -17,6 +18,8 @@ class Down:
         return inames
 
     def run(self):
+        super().run()
+
         inames = self.gather_interfaces()
 
         for iname in inames:

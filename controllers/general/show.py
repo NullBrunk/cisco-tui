@@ -1,8 +1,9 @@
+from controllers.baseController import baseController
 from views.colors import *
 from re import search
 import questionary
 
-class Show:
+class Show(baseController):
     def __init__(self, interact):
         self.interact = interact
 
@@ -80,6 +81,8 @@ class Show:
                 print(line + "\n") 
 
     def run(self):
+        super().run()
+
         command = questionary.select(
             "What do you want to do?",
             choices=[
