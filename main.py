@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+from services.getInterfaces import getInterfaces
+from services.interact import Interact
+
 from controllers.general.hostname import Hostname
 from controllers.general.save import Save
 from controllers.general.show import Show
@@ -8,8 +11,9 @@ from controllers.interfaces.ipv4 import Ipv4
 from controllers.interfaces.down import Down
 from controllers.interfaces.up import Up
 
-from services.getInterfaces import getInterfaces
-from services.interact import Interact
+from controllers.routes.static import Static
+from controllers.routes.ospf import Ospf
+from controllers.routes.bgp import Bgp
 
 from cli.parser import parse
 from cli.cli import *

@@ -30,7 +30,7 @@ class Ipv4(baseController):
 
 
     def ip_config(self):
-        cidr = questionary.text("Enter IP address:").ask()
+        cidr = questionary.text("IP address (e.g 10.0.0.1/24):").ask()
 
         if(not cidr): quit()
 

@@ -10,7 +10,8 @@ class Interact:
                 
                 if(command[i] == ""):
                     del command[i]
-
+            
+            command.append("end")
             return self.session.send_config_set(command)
 
         return self.session.send_command(command)
