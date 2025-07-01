@@ -6,6 +6,7 @@ from services.interact import Interact
 from controllers.general.hostname import Hostname
 from controllers.general.save import Save
 from controllers.general.show import Show
+from controllers.general.ping import Ping
 
 from controllers.interfaces.ipv4 import Ipv4
 from controllers.interfaces.down import Down
@@ -45,6 +46,9 @@ def main():
 
     elif "hostname".startswith(command.lower()):
         controller = Hostname(interact)
+
+    elif "ping".startswith(command.lower()):
+        controller = Ping(interact)
 
     elif "show".startswith(command.lower()):
         controller = Show(interact)
