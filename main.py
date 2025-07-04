@@ -4,9 +4,12 @@ from services.getInterfaces import getInterfaces
 from services.interact import Interact
 
 from controllers.general.hostname import Hostname
+from controllers.general.reload import Reload
 from controllers.general.save import Save
 from controllers.general.show import Show
 from controllers.general.ping import Ping
+from controllers.general.exec import Exec
+from controllers.general.log import Log
 
 from controllers.interfaces.ipv4 import Ipv4
 from controllers.interfaces.down import Down
@@ -31,8 +34,10 @@ def main():
         port=port,
         fast_cli=True,
     )
-    net_connect.enable()
+
     interact = Interact(net_connect)
+    interact.enable()
+    
     controller = None
 
     if "ipv4".startswith(command.lower()):
@@ -55,6 +60,19 @@ def main():
 
     elif "save".startswith(command.lower()):
         controller = Save(interact)
+
+    elif "exec".startswith(command.lower()):
+        if(not non_mandatory):
+            error(program_name, "Missing the command to execute")
+            quit()
+            
+        controller = Exec(interact, non_mandatory)
+
+    elif "reload".startswith(command.lower()):
+        controller = Reload(interact)
+
+    elif "log".startswith(command.lower()):
+        controller = Log(interact)
 
     elif "static".startswith(command.lower()):
         controller = Static(interact)

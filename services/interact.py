@@ -2,6 +2,9 @@ class Interact:
     def __init__(self, session):
         self.session = session
 
+    def enable(self):
+        self.session.enable()
+
     def send(self, command: str, config: bool = False):
         if(config):
             command = command.split("\n")

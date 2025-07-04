@@ -28,6 +28,6 @@ def parse():
         quit()
 
     if(len(argv) > 4):
-        return argv[0], ip, port, command, argv[4]
+        return argv[0], ip, port, command, ' '.join(argv[4:])
 
     return argv[0], ip, port, command, None

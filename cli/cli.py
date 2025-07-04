@@ -11,10 +11,11 @@ def help_menu(program_name: str):
 
 {BOLD_GREEN}COMMANDS:
   {BOLD_CYAN}hostname         {NOCOLOR}{WHITE}Get/set the router hostname
+  {BOLD_CYAN}reload           {NOCOLOR}{WHITE}Reboot the router
   {BOLD_CYAN}ping             {NOCOLOR}{WHITE}Send ICMP echo request
   {BOLD_CYAN}show             {NOCOLOR}{WHITE}Get informations (sh commands)
   {BOLD_CYAN}save             {NOCOLOR}{WHITE}Write the running config  
-
+  {BOLD_CYAN}log              {NOCOLOR}{WHITE}Show logs
 
   {BOLD_CYAN}ipv4             {NOCOLOR}{WHITE}Configure IPv4 on an interface
   {BOLD_CYAN}down             {NOCOLOR}{WHITE}Down a group of interface
