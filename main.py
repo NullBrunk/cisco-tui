@@ -26,7 +26,7 @@ from netmiko import ConnectHandler
 
 
 def main():
-    program_name, ip, port, command, non_mandatory = parse()
+    program_name, ip, port, general_command, command = parse()
 
     net_connect = ConnectHandler(
         device_type="cisco_ios_telnet",
@@ -40,52 +40,62 @@ def main():
     
     controller = None
 
-    if "ipv4".startswith(command.lower()):
-        controller = Ipv4(interact, getInterfaces(interact))
+    if(general_command in ["interface", "i"]):
+        if "ipv4".startswith(command.lower()):
+            controller = Ipv4(interact, getInterfaces(interact))
 
-    elif "down".startswith(command.lower()):
-        controller = Down(interact, getInterfaces(interact))
+        elif "down".startswith(command.lower()):
+            controller = Down(interact, getInterfaces(interact))
 
-    elif "up".startswith(command.lower()):
-        controller = Up(interact, getInterfaces(interact))
+        elif "up".startswith(command.lower()):
+            controller = Up(interact, getInterfaces(interact))
 
-    elif "hostname".startswith(command.lower()):
-        controller = Hostname(interact)
+        else:
+            error(f"Unrecognized command {command}")
 
-    elif "ping".startswith(command.lower()):
-        controller = Ping(interact)
+    elif(general_command in ["global", "g"]):
+        if "hostname".startswith(command.lower()):
+            controller = Hostname(interact)
 
-    elif "show".startswith(command.lower()):
-        controller = Show(interact)
+        elif "ping".startswith(command.lower()):
+            controller = Ping(interact)
 
-    elif "save".startswith(command.lower()):
-        controller = Save(interact)
+        elif "show".startswith(command.lower()):
+            controller = Show(interact)
 
-    elif "exec".startswith(command.lower()):
-        if(not non_mandatory):
-            error(program_name, "Missing the command to execute")
-            quit()
-            
-        controller = Exec(interact, non_mandatory)
+        elif "save".startswith(command.lower()):
+            controller = Save(interact)
 
-    elif "reload".startswith(command.lower()):
-        controller = Reload(interact)
+        elif "exec".startswith(command.lower()):
+            if(not non_mandatory):
+                error("Missing the command to execute")
+                quit()
+                
+            controller = Exec(interact, non_mandatory)
 
-    elif "log".startswith(command.lower()):
-        controller = Log(interact)
+        elif "reload".startswith(command.lower()):
+            controller = Reload(interact)
 
-    elif "static".startswith(command.lower()):
-        controller = Static(interact)
+        elif "log".startswith(command.lower()):
+            controller = Log(interact)
 
-    elif "ospf".startswith(command.lower()):
-        controller = Ospf(interact)
+        else:
+            error(f"Unrecognized command {command}")
 
-    elif "bgp".startswith(command.lower()):
-        controller = Bgp(interact)
+    elif(general_command in ["routing", "r"]):
+        if "static".startswith(command.lower()):
+            controller = Static(interact)
 
+        elif "ospf".startswith(command.lower()):
+            controller = Ospf(interact)
+
+        elif "bgp".startswith(command.lower()):
+            controller = Bgp(interact)
+
+        else:
+            error(f"Unrecognized command {command}")
     else:
-        error(program_name, f"Unrecognized command {command}")
-        quit()
+        error(f"Unrecognized command {command}")
 
     controller.run()
 

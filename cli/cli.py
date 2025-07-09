@@ -80,3 +80,4 @@ def error(msg: str):
 
 {WHITE}For more information, try '{BOLD_CYAN}--help{NOCOLOR}{WHITE}'.
 """)
+    quit()

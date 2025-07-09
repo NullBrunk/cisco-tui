@@ -5,6 +5,7 @@ import questionary
 
 class Up(baseController):
     def __init__(self, interact, INTERFACES):
+        quit()
         self.interact = interact
         self.INTERFACES = INTERFACES
 
